@@ -11,21 +11,28 @@ spec:
   # these are the steps which are rendered in the frontend with the form input
         
   parameters:
-    
- 
- 
- - title: Backstage Catalog Item Configuration
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: My custom name for the component
+          ui:field: MyCustomExtension
+          
+            
+    - title: Backstage Catalog Item Configuration
       required:
         - owner
       properties:
         owner:
           title: Entity Owner
           type: string
-          description: Owner of the Created Entity in Backastage
-          ui:field: OwnerPicker
+          description: Owner of the created entity in backstage
+          ui:fileld: OwnerPicker
           ui:options:
-            allowedKinds: [Template]
-
+            allowedKinds: [Group]
     - title: Choose a location
       required:
         - repoUrl
@@ -68,15 +75,16 @@ spec:
     #   input:
     #     targetPath: ./community
     #     url: https://github.com/backstage/community/tree/main/backstage-community-sessions
-    
-
-
+   
+  
     - id: register-rest
       name: Register-rest
       action: rest-api-randomuser
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
+
+
 
     - id: publish
       name: Publish
