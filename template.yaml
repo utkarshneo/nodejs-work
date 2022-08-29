@@ -11,16 +11,19 @@ spec:
   # these are the steps which are rendered in the frontend with the form input
         
   parameters:
-    - title: Fill in some steps
+  
+  - title: Backstage Catalog Item Configuration
       required:
-        - name
+        - owner
       properties:
-        name:
-          title: Name
+        owner:
+          title: Entity Owner
           type: string
-          description: My custom name for the component
-          ui:field: MyCustomExtension
-          
+          description: Owner of the Created Entity in Backastage
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: [Template]
+
             
     - title: Backstage Catalog Item Configuration
       required:
