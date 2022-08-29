@@ -12,9 +12,7 @@ spec:
         
   parameters:
     - title: Fill in some steps
-      required:
-        - name
-      properties:
+     properties:
         name:
           title: Name
           type: string
