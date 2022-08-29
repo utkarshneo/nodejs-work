@@ -1,0 +1,20 @@
+{
+  "name": "nodejs_templete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "start": "node index.js"
+  },
+  "author": "Abhay",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "express": "^4.18.1",
+    "mocha": "^10.0.0",
+    "nunjucks": "^3.2.3",
+    "nunjucks-in-yaml": "^1.0.4",
+    "request": "^2.88.2"
+  }
+}

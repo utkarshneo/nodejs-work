@@ -1,0 +1,89 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+# some metadata about the template itself
+metadata:
+  name: demo
+  title: demo demplate
+  description: demo field project
+spec:
+  owner: abhay-statusneo
+  type: service
+  # these are the steps which are rendered in the frontend with the form input
+  
+  actions:
+    - action: "Send HTTP request to http://mywebserver.io"
+      type: "HTTP"
+      login: "api_tests_user"
+      password: "$api_tests_password"
+      port: "4567"
+      notification_url: "$url"
+      method: "POST"
+      content: "{\r\n\t\"url\": \"${BUDDY_EXECUTION_URL}\",\r\n\t\"html_url\": \"${BUDDY_EXECUTION_URL}\",\r\n\t\"id\": \"${BUDDY_EXECUTION_ID}\",\r\n\t\"start_date\": \"${BUDDY_EXECUTION_START_DATE}\",\r\n\t\"mode\": \"${BUDDY_EXECUTION_START_DATE}\",\r\n\t\"refresh\": \"${BUDDY_EXECUTION_REFRESH}\",,\r\n\t\"comment\": \"${BUDDY_EXECUTION_COMMENT}\",\r\n}"
+      headers:
+      - name: "User-Agent"
+        value: "Buddy"
+      - name: "Content-Type"
+        value: "application/json"
+      timeout: 120
+      variables:
+      - key: "url"
+        value: "http://mywebserver.io"
+  
+  steps:
+    - id: httpRequest
+      name: httpRequest
+      action: mckinsey:http-request
+      input:
+        params: test
+   
+  variables:
+    names: ${{each img in ${{steps.httpRequest.output.result.results}} echo img.gender}}       
+        
+  parameters:
+    - title: Creating a API
+      required: []
+      properties:
+        technology:
+          type: string
+          enum:
+            ${{variables.names}}
+
+      # Creating a dependency based on the selected technology above
+      dependencies:
+        technology:
+          oneOf:
+            - properties:
+                technology:
+                  enum:
+                    - java
+                java version:
+                  type: "string"
+                  enum:
+                    - java8
+                    - java11
+
+              # Creating a dependency based on the selected java version (not necessary, just for example)
+              dependencies:
+                java version:
+                  oneOf:
+                    - properties: 
+                        java version:
+                          enum:
+                            - java8
+                        any other option:
+                          type: "string"
+                          enum:
+                            - option1
+                            - java build x.y.z
+              required: 
+                - java version
+           
+  output:
+    getResponse: ${{ steps.httpRequest.output.result }}
+    links:
+      - title: API Response
+        url: ${{ steps.httpRequest.output.result.info.version}}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}                
+  

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name | dump }}
+  test: ${{ values.allParameter | dump }}
+  annotations:
+    gocd.org/pipelines: backstage,backstage-pr,backstage-builder
+spec:
+  type: service
+  owner: ${{ values.owner | dump }}
+  lifecycle: experimental
