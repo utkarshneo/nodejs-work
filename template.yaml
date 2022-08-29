@@ -20,7 +20,8 @@ spec:
           type: string
           description: My custom name for the component
           ui:field: OwnerPicker
-          
+          ui:options:
+            allowedKinds: [Template]
             
     - title: Backstage Catalog Item Configuration
       required:
