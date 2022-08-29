@@ -19,7 +19,7 @@ spec:
           title: Name
           type: string
           description: My custom name for the component
-          ui:field: MyCustomExtension
+          ui:field: OwnerPicker
           
             
     - title: Backstage Catalog Item Configuration
