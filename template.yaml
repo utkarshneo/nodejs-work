@@ -11,8 +11,10 @@ spec:
   # these are the steps which are rendered in the frontend with the form input
         
   parameters:
-  
-  - title: Backstage Catalog Item Configuration
+    
+ 
+ 
+ - title: Backstage Catalog Item Configuration
       required:
         - owner
       properties:
@@ -24,18 +26,6 @@ spec:
           ui:options:
             allowedKinds: [Template]
 
-            
-    - title: Backstage Catalog Item Configuration
-      required:
-        - owner
-      properties:
-        owner:
-          title: Entity Owner
-          type: string
-          description: Owner of the created entity in backstage
-          ui:fileld: OwnerPicker
-          ui:options:
-            allowedKinds: [Group]
     - title: Choose a location
       required:
         - repoUrl
